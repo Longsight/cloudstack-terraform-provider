@@ -95,7 +95,7 @@ func zoneDescriptionAttributes(d *schema.ResourceData, zone *cloudstack.Zone) er
 	d.Set("name", zone.Name)
 	d.Set("dns1", zone.Dns1)
 	d.Set("internal_dns1", zone.Internaldns1)
-	d.Set("network_domain", zone.Domainname)
+	d.Set("network_domain", zone.Resourcedetails["guest.domain.suffix"])
 	d.Set("network_type", zone.Networktype)
 
 	return nil
