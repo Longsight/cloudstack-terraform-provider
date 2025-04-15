@@ -161,7 +161,7 @@ func instanceDescriptionAttributes(d *schema.ResourceData, instance *cloudstack.
 	d.Set("zone_id", instance.Zoneid)
 	d.Set("nic", []interface{}{map[string]string{
 		"ip_address":  instance.Nic[0].Ipaddress,
-		"ip6_address": instance.Nic[0].Ipaddress,
+		"ip6_address": instance.Nic[0].Ip6address,
 	}})
 
 	d.Set("tags", tagsToMap(instance.Tags))
