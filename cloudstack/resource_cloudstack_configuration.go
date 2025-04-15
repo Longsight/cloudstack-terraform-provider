@@ -33,7 +33,7 @@ func resourceCloudStackConfiguration() *schema.Resource {
 		Update: resourceCloudStackConfigurationUpdate,
 		Delete: resourceCloudStackConfigurationDelete,
 		Importer: &schema.ResourceImporter{
-			State: importStatePassthrough,
+			StateContext: importStatePassthroughContext,
 		},
 
 		Schema: map[string]*schema.Schema{
