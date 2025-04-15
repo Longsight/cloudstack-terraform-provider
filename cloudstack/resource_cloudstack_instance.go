@@ -80,6 +80,12 @@ func resourceCloudStackInstance() *schema.Resource {
 				Computed: true,
 			},
 
+			"ip6_cidr": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+
 			"template": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -456,6 +462,7 @@ func resourceCloudStackInstanceRead(d *schema.ResourceData, meta interface{}) er
 		d.Set("ip_address", vm.Nic[0].Ipaddress)
 		if vm.Nic[0].Ip6address != "" {
 			d.Set("ip6_address", vm.Nic[0].Ip6address)
+			d.Set("ip6_cidr", vm.Nic[0].Ip6cidr)
 		}
 	}
 

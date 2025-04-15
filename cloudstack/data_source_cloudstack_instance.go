@@ -92,6 +92,12 @@ func dataSourceCloudstackInstance() *schema.Resource {
 							Computed: true,
 							Optional: true,
 						},
+
+						"ip6_cidr": {
+							Type:     schema.TypeString,
+							Computed: true,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -162,6 +168,7 @@ func instanceDescriptionAttributes(d *schema.ResourceData, instance *cloudstack.
 	d.Set("nic", []interface{}{map[string]string{
 		"ip_address":  instance.Nic[0].Ipaddress,
 		"ip6_address": instance.Nic[0].Ip6address,
+		"ip6_cidr":    instance.Nic[0].Ip6cidr,
 	}})
 
 	d.Set("tags", tagsToMap(instance.Tags))
