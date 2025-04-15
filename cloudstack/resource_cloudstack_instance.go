@@ -74,6 +74,12 @@ func resourceCloudStackInstance() *schema.Resource {
 				ForceNew: true,
 			},
 
+			"ip6_address": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+
 			"template": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -448,6 +454,9 @@ func resourceCloudStackInstanceRead(d *schema.ResourceData, meta interface{}) er
 	if len(vm.Nic) > 0 {
 		d.Set("network_id", vm.Nic[0].Networkid)
 		d.Set("ip_address", vm.Nic[0].Ipaddress)
+		if vm.Nic[0].Ip6address != "" {
+			d.Set("ip6_address", vm.Nic[0].Ip6address)
+		}
 	}
 
 	// Create a new param struct.
